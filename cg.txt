@@ -1,0 +1,164 @@
+1.) Draw an Aquarium
+code: 
+#include <graphics.h>
+#include <conio.h>
+#include <stdio.h>
+#include <dos.h>
+void oxygen_bubbles(int i, int y)
+{
+	if(y<100)
+	{
+		y=y+200;
+		if(y>200)
+		{
+			circle(100,y+110-i,5);
+		}
+	}
+	else
+	{
+		circle(100,y+110-i,5);
+	}
+}
+void main()
+{
+	int gd= DETECT, gm;
+	initgraph(&gd,&gm,"C:\\TURBOC3\\BGI");
+	int i,y=200;
+	for(i=0;i<300;i++)
+	{
+		line(150+i,250,190+i,290);
+		line(150+i,250,90+i,310);
+		line(90+i,270,150+i,330);
+		line(190+i,290,150+i,330);
+		line(90-i,310,90+i,270);
+		circle(170+i,290,3);
+		
+		arc(400-i,150,50,320,30);
+		line(420-i,128,450-i,160);
+		line(420-i,173,450-i,130);
+		line(450-i,160,450-i,130);
+		circle(380-i,150,3);
+		arc(380-i,150,270,90,20);
+
+		line(50,300,80,300);
+		line(80,300,80,370);
+		line(80,305,90,305);
+		line(80,310,90,310);
+		line(90,305,90,310);
+		oxygen_bubbles(i,y);
+		y--;
+		line(50,10,550,10);
+		line(50,10,10,100);
+		line(550,10,590,100);
+		line(10,100,590,100);
+
+		line(50,100,50,400);
+		line(550,100,550,400);
+		line(50,400,550,400);
+
+		ellipse(100,390,0,360,20,10);
+		ellipse(125,370,0,360,25,10);
+		ellipse(150,390,0,360,25,10);
+		ellipse(170,375,0,360,15,5);
+		circle(180,390,10);
+		ellipse(200,380,0,360,20,15);
+		circle(220,390,10);
+		ellipse(250,380,0,360,20,15);
+
+		ellipse(290,390,0,360,20,10);
+		ellipse(315,370,0,360,25,10);
+		ellipse(340,390,0,360,25,10);
+		ellipse(360,375,0,360,15,5);
+		circle(370,390,10);
+		ellipse(390,380,0,360,10,15);
+		circle(410,390,10);
+		ellipse(440,380,0,360,20,15);
+
+		ellipse(480,390,0,360,20,10);
+		ellipse(505,370,0,360,25,10);
+		ellipse(530,390,0,360,21,10);
+
+		delay(50);
+		cleardevice();
+	}
+	getch();
+	closegraph();
+}
+
+
+2.) DDA line algorithm
+code:
+#include<graphics.h>  
+#include<conio.h>  
+#include<stdio.h>  
+void main()  
+{  
+    int gd = DETECT ,gm, i;  
+    float x, y,dx,dy,steps;  
+    int x0, x1, y0, y1;  
+    initgraph(&gd, &gm, "C:\\TURBOC3\\BGI");  
+    setbkcolor(WHITE);  
+    x0 = 100 , y0 = 200, x1 = 500, y1 = 300;  
+    dx = (float)(x1 - x0);  
+    dy = (float)(y1 - y0);  
+    if(dx>=dy)  
+           {  
+        steps = dx;  
+    }  
+    else  
+           {  
+        steps = dy;  
+    }  
+    dx = dx/steps;  
+    dy = dy/steps;  
+    x = x0;  
+    y = y0;  
+    i = 1;  
+    while(i<= steps)  
+    {  
+        putpixel(x, y, RED);  
+        x += dx;  
+        y += dy;  
+        i=i+1;  
+    }  
+    getch();  
+    closegraph();  
+}
+
+
+3.) TRIANGLE SCALING
+cODE: 
+#include<stdio.h>
+#include<conio.h>
+#include<graphics.h>
+void main(){
+int x,y,x1,y1,x2,y2;
+int scl_fctr_x,scl_fctr_y;
+int gd=DETECT,gm;
+initgraph(&gd,&gm,"C:\\TURBOC3\\BGI");
+printf("\t\t\t**** Scaling *****\n");
+printf("\n\t\t\t Please enter first coordinate of Triangle = ");
+scanf("%d %d",&x,&y);
+printf("\n\t\t\t Please enter second coordinate of Triangle = ");
+scanf("%d %d",&x1,&y1);
+printf("\n\t\t\t Please enter third coordinate of Triangle = ");
+scanf("%d %d",&x2,&y2);
+line(x,y,x1,y1);
+line(x1,y1,x2,y2);
+line(x2,y2,x,y);
+printf("\n\t\t\t Now Enter Scaling factor x and y = ");
+scanf("%d %d",&scl_fctr_x,&scl_fctr_y);
+x = x* scl_fctr_x;
+x1 = x1* scl_fctr_x;
+x2 = x2* scl_fctr_x;
+y = y* scl_fctr_y;
+y1 = y1* scl_fctr_y;
+y2= y2 * scl_fctr_y ;
+
+line(x,y,x1,y1);
+line(x1,y1,x2,y2);
+line(x2,y2,x,y);
+getch();
+closegraph();
+}
+
